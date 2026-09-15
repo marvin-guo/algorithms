@@ -22,7 +22,7 @@ console.log(customSplit('abcabc2323abc', 'a'))
 
 // () [] {}
 function validParentheses(str) {
-  const obj = { '}' : '{', ']': '[', ')': '(' }
+  const obj = { '}': '{', ']': '[', ')': '(' }
   const leftKeys = ['{', '[', '(']
   const stack = []
   for (const char of str) {
@@ -148,3 +148,62 @@ console.log('stringCompression.............')
 // Would you like the solution 
 // and code breakdown for one of these specific problems, 
 // or should we practice behavioral questions next?
+
+function twoSum(nums, target) {
+  const map = new Map()
+  for (let i = 0; i < nums.length; i++) {
+    const complementary = target - nums[i]
+    if (map.has(complementary)) {
+      return [map.get(complementary), i]
+    }
+    map.set(nums[i], i)
+  }
+  return []
+}
+
+function moveZeros(nums) {
+  let lastNonZeroFoundAt = 0
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[lastNonZeroFoundAt] = nums[i]
+      lastNonZeroFoundAt++
+    }
+  }
+  for (let i = lastNonZeroFoundAt; i < nums.length; i++) {
+    nums[i] = 0
+  }
+  return nums
+}
+
+function firstUniqueChar(s) {
+  const count = {}
+  for (const char of s) {
+    count[char] = (count[char] || 0) + 1
+  }
+  for (let i = 0; i < s.length; i++) {
+    if (count[s[i]] === 1) {
+      return i
+    }
+  }
+  return -1
+}
+
+function isPalindrome(s) {
+  const cleaned = s.toLowerCase().replace(/[^a-z0-9]/g, '')
+  let left = 0
+  let right = cleaned.length - 1
+  while (left < right) {
+    if (cleaned[left] !== cleaned[right]) {
+      return false
+    }
+    left++
+    right--
+  }
+  return true
+}
+
+function reverseWords(s) {
+  return s.trim().split(/\s+/).reverse().join(' ')
+}
+
+console.log(reverseWords('abc nihao  haha lelele '))
