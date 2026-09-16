@@ -207,3 +207,17 @@ function reverseWords(s) {
 }
 
 console.log(reverseWords('abc nihao  haha lelele '))
+
+function flattenTasks(tasks) {
+  let result = []
+  for (const item of tasks) {
+    if (Array.isArray(item)) {
+      result = result.concat(flattenTasks(item))
+    } else {
+      result.push(item)
+    }
+  }
+  return result
+}
+
+console.log(flattenTasks([1, 2, [4, 6, [8, 9]], [23, 223, [2, 33]]]))
