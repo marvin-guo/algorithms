@@ -1,4 +1,4 @@
-// Bit Mask I, shift left
+// Bit Mask I, shift left O(1)&O(1)
 function hammingWeight1(n) {
   let res = 0
   for (let i = 0; i < 32; i++) {
@@ -9,7 +9,7 @@ function hammingWeight1(n) {
   return res
 }
 
-// Bit Mask II, shift right
+// Bit Mask II, shift right O(1)&O(1)
 function hammingWeight2(n) {
   let res = 0
   let cur = n
@@ -18,6 +18,17 @@ function hammingWeight2(n) {
       res++
     }
     cur >>= 1
+  }
+  return res
+}
+
+// Bit Mask III, optimal, remove one '1' bit from n every time, not check '0' bit at all
+function hammingWeight3(n) {
+  let res = 0
+  while (n !== 0) {
+    // remove one rightmost '1' bit exactly
+    n &= n - 1
+    res++
   }
   return res
 }
