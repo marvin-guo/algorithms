@@ -8,6 +8,7 @@ class TreeNode {
   }
 }
 
+// recursion DFS T O(n), S O(n) for recursion stack
 function invertTree(root) {
   if (!root) {
     return null
@@ -18,6 +19,10 @@ function invertTree(root) {
   return root
 }
 
+// iterative DFS
+// Stack, O(n) & O(n)
+
+// BFS with Queue, O(n) & O(n)
 function invertTreeBfs(root) {
   if (!root) {
     return null

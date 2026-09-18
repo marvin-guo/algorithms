@@ -8,6 +8,8 @@ class TreeNode {
   }
 }
 
+// recursive DFS, O(n) & O(h) Best case O(log(n)) for balanced tree
+// and worst case O(n) for degenerate tree
 function maxDepthRecursiveDfs(root) {
   if (!root) {
     return 0
@@ -15,6 +17,7 @@ function maxDepthRecursiveDfs(root) {
   return 1 + Math.max(maxDepth(root.left), maxDepth(root.right))
 }
 
+// iterative DFS (stack), O(n) & O(n)
 function maxDepthIterativeDfs(root) {
   if (!root) {
     return 0
@@ -32,6 +35,7 @@ function maxDepthIterativeDfs(root) {
   return res
 }
 
+// BFS, O(n) & O(n)
 function maxDepthBfs(root) {
   const q = new Queue()
   if (root !== null) {
