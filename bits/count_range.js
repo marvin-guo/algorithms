@@ -18,6 +18,17 @@ function countBitsDp(n) {
   return dp
 }
 
+// each result depends only on a previously computed value, a perfect fit for Dynamic Programming
+// O(N) & (O(1) + O(n))
+function countBitsDpOptimal(n) {
+  const dp = new Array(n + 1).fill(0)
+  for (let i = 1; i <= n; i++) {
+    // i >> 1 is an proper easy find computed value
+    dp[i] = dp[i >> 1] + (1 & i)
+  }
+  return dp
+}
+
 // O(NlogN) & (O(1) + O(n))
 function countBits(n) {
   let res = new Array(n + 1).fill(0)

@@ -2,6 +2,7 @@
 function hammingWeight1(n) {
   let res = 0
   for (let i = 0; i < 32; i++) {
+    // it means move 1 to left by i space, only first bit is '1' and rest are '0's
     if ((1 << i) & n) {
       res++
     }
@@ -32,3 +33,6 @@ function hammingWeight3(n) {
   }
   return res
 }
+
+// res >>> 0 can convert negative to positive unsigned binary equivalent
+// coerce any number in an unsigned 32-bit integer
