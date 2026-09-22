@@ -22,3 +22,24 @@ function buildTree(preorder, inorder) {
 
   return dfs(0, inorder.length - 1)
 }
+
+// dfs optimal, with limit (Infinity)
+function buildTreeWithLimit(preorder, inorder) {
+  let preIdx = 0
+  let inIdx = 0
+  
+  const dfs = (limit) => {
+    if (preIdx >= preorder.length) return null
+    if (inorder[inIdx] === limit) {
+      inIdx++
+      return null
+    }
+
+    let root = new TreeNode(preorder[preIdx++])
+    root.left = dfs(root.val)
+    root.right = dfs(limit)
+    return root
+  }
+
+  return dfs(Infinity)
+}
