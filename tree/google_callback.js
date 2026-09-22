@@ -53,3 +53,42 @@ function executeTask(task, callback) {
     })
   }
 }
+
+// this is post-order traversal
+// write a test mock function to verify the behavior
+function createMockTask(name, deps, duration = 1000) {
+  return {
+    name,
+    directDeps: deps,
+    execute: function (cb) {
+      // use normal `function` (not arrow function), so this.name point to correct value
+      console.log(`[START] Task ${this.name}`)
+      setTimeout(() => {
+        console.log(`[DONE] Task ${this.name}`)
+        cb(null)
+      }, duration)
+    }
+  }
+}
+
+// Tree Structure:
+//        A (Root)
+//       /   \
+//      B     C
+//     / \
+//    D   E
+
+const taskD = createMockTask('D', [], 1000);
+const taskE = createMockTask('E', [], 1500);
+const taskB = createMockTask('B', [taskD, taskE], 800);
+const taskC = createMockTask('C', [], 2000);
+const taskA = createMockTask('A', [taskB, taskC], 500);
+
+// Run the root task
+executeTask(taskA, (err) => {
+  if (err) {
+    console.error('Execution failed:', err)
+  } else {
+    console.log('ALERT: Root Task A is fully done!')
+  }
+})
