@@ -153,3 +153,14 @@ async function runTest() {
 }
 
 runTest();
+
+// real-world equivalents
+// Every time a system processes dependencies, it is running a Topological Sort under the hood:
+// 1. Build Systems (Webpack, Vite, Bazel): 
+//    Compiling source code files in the right order based on import statements.
+// 2. Package Managers (npm, pip): 
+//    Installing package dependencies before installing the library that needs them.
+// 3. Database Migrations: 
+//    Running schema migration scripts in the order required by foreign key constraints.
+// 4. Spreadsheet Formulas: 
+//    Calculating cell values in Excel based on which cells reference which ($A1 = B1 + C1$).
