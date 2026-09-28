@@ -27,7 +27,7 @@ function buildTree(preorder, inorder) {
 function buildTreeWithLimit(preorder, inorder) {
   let preIdx = 0
   let inIdx = 0
-  
+
   const dfs = (limit) => {
     if (preIdx >= preorder.length) return null
     if (inorder[inIdx] === limit) {
@@ -42,4 +42,33 @@ function buildTreeWithLimit(preorder, inorder) {
   }
 
   return dfs(Infinity)
+}
+
+// Morris traversal?
+// understand it with kth_smallest_in_bst together
+function buildTreeMorris(preorder, inorder) {
+  let head = new TreeNode(null);
+  let curr = head;
+  let i = 0,
+    j = 0,
+    n = preorder.length;
+
+  while (i < n && j < n) {
+    curr.right = new TreeNode(preorder[i], null, curr.right);
+    curr = curr.right;
+    i++;
+    while (i < n && curr.val !== inorder[j]) {
+      curr.left = new TreeNode(preorder[i], null, curr);
+      curr = curr.left;
+      i++;
+    }
+    j++;
+    while (curr.right && j < n && curr.right.val === inorder[j]) {
+      let prev = curr.right;
+      curr.right = null;
+      curr = prev;
+      j++;
+    }
+  }
+  return head.right;
 }
