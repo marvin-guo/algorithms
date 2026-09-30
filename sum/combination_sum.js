@@ -10,6 +10,8 @@
  * Whenever the running total equals the target, we store that combination.
  * If the total becomes greater than the target or we run out of numbers, we stop exploring that path.
  */
+// T O(2^t/m * K) & S O(t/m)
+// t: target, m: min value in nums, K: average length of a valid combination, [...base] shallow copy of array
 function combinationSumBacktrack(nums, target) {
   if (!nums?.length) {
     return []
@@ -58,6 +60,37 @@ function combinationSum(nums, target) {
       }
     }
     return
+  }
+
+  dfs()
+  return res
+}
+
+// backtracking optimal 
+// avoid exploring useless paths by using sorting and early stopping / pruning
+// loop-based backtrcking template
+function combinationSumBacktrackAndSort(nums, target) {
+  if (!nums?.length) {
+    return []
+  }
+  nums.sort((a, b) => a - b)
+
+  const res = []
+
+  const dfs = (base = [], idx = 0, total = 0) => {
+    if (total === target) {
+      res.push([...base])
+      return
+    }
+
+    for (let j = idx; j < nums.length; j++) {
+      if (total + nums[j] > target) {
+        return
+      }
+      base.push(nums[j])
+      dfs(base, j, total + nums[j])
+      base.pop()
+    }
   }
 
   dfs()
