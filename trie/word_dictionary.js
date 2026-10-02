@@ -5,7 +5,9 @@ class TrieNode {
   }
 }
 
-class PrefixTree {
+// T O(n) for add and search
+// S O(t + n) n is string length and t is total number of TrieNodes created in the Trie
+class WordDictionary {
   constructor() {
     this.root = new TrieNode()
   }
@@ -50,5 +52,34 @@ class PrefixTree {
       }
     }
     return cur.word
+  }
+}
+
+// Brute Force
+class WordDictionaryWithArray {
+  constructor() {
+    this.store = []
+  }
+
+  addWord(word) {
+    this.store.push(word)
+  }
+
+  search(word) {
+    for (let w of this.store) {
+      if (w.length !== word.length) continue
+      let i = 0
+      while (i < w.length) {
+        if (w[i] === word[i] || word[i] === '.') {
+          i++
+        } else {
+          break
+        }
+      }
+      if (i === w.length) {
+        return true
+      }
+    }
+    return false
   }
 }
