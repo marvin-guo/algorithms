@@ -65,6 +65,7 @@ class WordDictionaryWithArray {
     this.store.push(word)
   }
 
+  // T O(m * n), S O(m * n) m: number of words and n: length of the string
   search(word) {
     for (let w of this.store) {
       if (w.length !== word.length) continue
