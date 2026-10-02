@@ -1,5 +1,7 @@
 class TrieNode {
   constructor() {
+    // alternative: new Map()
+    // if use Map, don't need to get charCode and map size will up to 26 too
     this.children = new Array(26).fill(null)
     this.endOfWord = false
   }
