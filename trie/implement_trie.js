@@ -54,3 +54,5 @@ class PrefixTree {
     return true
   }
 }
+
+export default PrefixTree
