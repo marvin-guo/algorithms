@@ -19,6 +19,15 @@ class TrieNode {
   }
 }
 
+// T O(m * n * 4 * 3 ^ <t-1> + s)
+// S O(s)
+// comparing with backtracking exist check for each word T: O(w * m * n * 4 * 3 ^ <t - 1>) S: O(t)
+/**
+ * w: number of words (* can ignore in trie data structure)
+ * m: number of rows, n: number of columns
+ * t: maximum length of any word
+ * s: sum of the lengths of all the words
+ */
 function SearchWordTrie(board, words) {
   const root = new TrieNode()
   for (const word of words) {
