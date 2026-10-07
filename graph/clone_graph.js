@@ -1,4 +1,4 @@
-import Queue from "./queue.js"
+import Queue from "../queue.js"
 
 class Node {
   constructor(val = 0, neighbors = []) {
