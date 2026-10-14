@@ -58,6 +58,37 @@ function canFinish(numCourses, prerequisites) {
   return true
 }
 
+// BFS & indegree (same idea with above method, but cleaner)
+function canFinishBfs(numCourses, prerequisites) {
+  const indegree = Array(numCourses).fill(0)
+  const adj = Array.from({ length: numCourses }, () => [])
+  for (let [crs, dep] of prerequisites) {
+    indegree[src]++
+    adj[dep].push(crs)
+  }
+
+  const q = new Queue()
+  for (let i = 0; i < numCourses; i++) {
+    if (indegree[i] === 0) {
+      q.enqueue(i)
+    }
+  }
+
+  let finish = 0
+  while (!q.isEmpty()) {
+    const node = q.dequeue()
+    finish++
+    for (let pid of adj[node]) {
+      indegree[pid]--
+      if (indegree[pid] === 0) {
+        q.enqueue(pid)
+      }
+    }
+  }
+
+  return finish === numCourses
+}
+
 
 // DFS Cycle detection
 function canFinishDfs(numCourses, prerequisites) {
