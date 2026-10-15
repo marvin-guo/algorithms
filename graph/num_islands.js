@@ -47,15 +47,15 @@ function numIslandsBfs(grid) {
 
   const bfs = (r, c) => {
     const q = new Queue()
-    q.enqueue([r, c])
+    q.push([r, c])
     grid[r][c] = '0'
     while (!q.isEmpty()) {
-      const [row, col] = q.dequeue()
+      const [row, col] = q.pop()
       for (const [dr, dc] of directions) {
         const nr = row + dr
         const nc = col + dc
         if (nr >= 0 && nc >= 0 && nr < ROWS && nc < COLS && grid[nr][nc] === '1') {
-          q.enqueue([nr, nc])
+          q.push([nr, nc])
           grid[nr][nc] = '0'
         }
       }

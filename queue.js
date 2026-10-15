@@ -5,12 +5,12 @@ class Queue {
     this.tail = 0
   }
 
-  enqueue(item) {
+  push(item) {
     this.items[this.tail] = item
     this.tail++
   }
 
-  dequeue() {
+  pop() {
     if (!this.isEmpty()) {
       const item = this.items[this.head]
       delete this.items[this.head]

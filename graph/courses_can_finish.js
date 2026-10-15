@@ -31,19 +31,19 @@ function canFinish(numCourses, prerequisites) {
 
   for (let i = 0; i < numCourses; i++) {
     if (!indegreeMap.get(i)) {
-      readyQueue.enqueue(i)
+      readyQueue.push(i)
     }
   }
 
   while (readyQueue.size() > 0) {
-    const courseId = readyQueue.dequeue()
+    const courseId = readyQueue.pop()
     const parentIds = depsMap.get(courseId)
     if (parentIds) {
       for (let pid of parentIds) {
         const count = indegreeMap.get(pid)
         indegreeMap.set(pid, count - 1)
         if (count === 1) {
-          readyQueue.enqueue(pid)
+          readyQueue.push(pid)
         }
       }
     }
@@ -70,18 +70,18 @@ function canFinishBfs(numCourses, prerequisites) {
   const q = new Queue()
   for (let i = 0; i < numCourses; i++) {
     if (indegree[i] === 0) {
-      q.enqueue(i)
+      q.push(i)
     }
   }
 
   let finish = 0
   while (!q.isEmpty()) {
-    const node = q.dequeue()
+    const node = q.pop()
     finish++
     for (let pid of adj[node]) {
       indegree[pid]--
       if (indegree[pid] === 0) {
-        q.enqueue(pid)
+        q.push(pid)
       }
     }
   }

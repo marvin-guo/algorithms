@@ -28,18 +28,18 @@ function invertTreeBfs(root) {
     return null
   }
   const q = new Queue()
-  q.enqueue(root)
+  q.push(root)
   while (!q.isEmpty()) {
-    const item = q.dequeue()
+    const item = q.pop()
     const temp = item.left
     item.left = item.right
     item.right = temp
 
     if (item.left) {
-      q.enqueue(item.left)
+      q.push(item.left)
     }
     if (item.right) {
-      q.enqueue(item.right)
+      q.push(item.right)
     }
   }
   return root

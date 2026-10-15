@@ -39,7 +39,7 @@ function maxDepthIterativeDfs(root) {
 function maxDepthBfs(root) {
   const q = new Queue()
   if (root !== null) {
-    q.enqueue(root)
+    q.push(root)
   }
 
   let level = 0
@@ -47,12 +47,12 @@ function maxDepthBfs(root) {
   while(q.size() > 0) {
     const size = q.size()
     for (let i = 0; i < size; i++) {
-      const node = q.dequeue()
+      const node = q.pop()
       if (node.left !== null) {
-        q.enqueue(node.left)
+        q.push(node.left)
       }
       if (node.right !== null) {
-        q.enqueue(node.right)
+        q.push(node.right)
       }
     }
     level++

@@ -10,20 +10,20 @@ function levelOrder(root) {
   const queue = new Queue()
   const result = []
 
-  queue.enqueue(root)
+  queue.push(root)
 
   while (queue.size() > 0) {
     const size = queue.size()
     const curLevel = []
 
     for (let i = 0; i < size; i++) {
-      const item = queue.dequeue()
+      const item = queue.pop()
       curLevel.push(item.val)
       if (item.left !== null) {
-        queue.enqueue(item.left)
+        queue.push(item.left)
       }
       if (item.right !== null) {
-        queue.enqueue(item.right)
+        queue.push(item.right)
       }
     }
     result.push(curLevel)

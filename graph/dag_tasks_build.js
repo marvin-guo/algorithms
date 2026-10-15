@@ -49,7 +49,7 @@ async function buildAllTasks(tasks, maxConcurrency) {
   const readyQueue = new Queue()
   for (const [id, count] of inDegree.entries()) {
     if (count === 0) {
-      readyQueue.enqueue(id)
+      readyQueue.push(id)
     }
   }
 
@@ -65,7 +65,7 @@ async function buildAllTasks(tasks, maxConcurrency) {
         return resolve()
       }
       while (activeWorkers < maxConcurrency && readyQueue.size() > 0) {
-        const taskId = readyQueue.dequeue()
+        const taskId = readyQueue.pop()
         const task = taskMap.get(taskId)
 
         activeWorkers++
@@ -82,7 +82,7 @@ async function buildAllTasks(tasks, maxConcurrency) {
               const inDegreeCnt = inDegree.get(pid)
               inDegree.set(pid, inDegreeCnt - 1)
               if (inDegreeCnt === 1) {
-                readyQueue.enqueue(pid)
+                readyQueue.push(pid)
               }
             }
 

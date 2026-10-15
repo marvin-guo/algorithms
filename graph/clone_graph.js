@@ -88,14 +88,14 @@ function cloneGraphBfs(node) {
   const oldToNew = new Map()
   const q = new Queue()
   oldToNew.set(node, new Node(node.val))
-  q.enqueue(node)
+  q.push(node)
 
   while (!q.isEmpty()) {
-    const cur = q.dequeue()
+    const cur = q.pop()
     for (const nei of cur.neighbors) {
       if (!oldToNew.has(nei)) {
         oldToNew.set(nei, new Node(nei.val))
-        q.enqueue(nei)
+        q.push(nei)
       }
       oldToNew.get(cur).neighbors.push(oldToNew.get(nei))
     }

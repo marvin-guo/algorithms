@@ -88,7 +88,7 @@ class TaskRunner {
       }
     }
 
-    // 3. Dequeue and Execute Task
+    // 3. pop and Execute Task
     const { taskFn, resolve, reject } = this.queue.shift()
 
     this.runningCount++
