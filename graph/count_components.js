@@ -9,6 +9,7 @@ function countComponentsDsu(n, edges) {
   return dsu.components
 }
 
+// T O(V + E), S O(V + E)
 function countComponentsDfs(n, edges) {
   const adj = Array.from({ length: n }, () => [])
   const visited = Array(n).fill(false)
